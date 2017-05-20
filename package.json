@@ -1,0 +1,24 @@
+{
+  "name": "mediastream-bits-extractor",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/ycmjason/mediastream-bits-extractor.svg?branch=master)](https://travis-ci.org/ycmjason/mediastream-bits-extractor) A repository to extract bits from MediaStream.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -p $PORT",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycmjason/mediastream-bits-extractor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ycmjason/mediastream-bits-extractor/issues"
+  },
+  "homepage": "https://github.com/ycmjason/mediastream-bits-extractor#readme",
+  "dependencies": {
+    "http-server": "^0.10.0",
+    "webrtc-adapter": "^3.4.3"
+  }
+}

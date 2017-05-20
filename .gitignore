@@ -1,0 +1,4 @@
+# created by gitignorer
+# profile used: default
+.DS_Store*
+node_modules
