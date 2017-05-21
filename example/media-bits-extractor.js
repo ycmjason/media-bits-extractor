@@ -45,10 +45,10 @@ function blobToDataURL(blob, callback) {
     a.readAsDataURL(blob);
 }
 
-function MediaBitsExtractor(config){
+function MediaBitsExtractor(config, interval){
   config.video = config.video || false;
   config.audio = config.audio || false;
-  config.SAMPLING_RATE = config.SAMPLING_RATE || 1000;
+  this.interval = interval || 1000;
   this.config = config;
 
   this.recorders = {
@@ -67,6 +67,7 @@ MediaBitsExtractor.prototype.start = function(){
   var eventEmitter = this.eventEmitter;
   var config = this.config;
   var recorders = this.recorders;
+  var interval = this.interval;
   navigator.getUserMedia({ video: config.video, audio: config.audio }, function (s) {
     ['video', 'audio'].forEach(function(type){
       if(!config[type]) return;
@@ -89,7 +90,6 @@ MediaBitsExtractor.prototype.start = function(){
       mediaRecorder.ondataavailable = function(e){
         blobToDataURL(e.data, function(dataUrl){
           var bits = getBitsInDataUrl(dataUrl);
-          console.log(type, bits.length);
           eventEmitter.emit(type, bits);
         });
       };
@@ -97,7 +97,7 @@ MediaBitsExtractor.prototype.start = function(){
       var i = setInterval(function(){
         if(mediaRecorder.state === "inactive") return clearInterval(i);
         mediaRecorder.requestData();
-      }, config.SAMPLING_RATE);
+      }, interval);
     });
   });
 };

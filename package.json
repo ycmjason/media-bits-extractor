@@ -1,6 +1,6 @@
 {
-  "name": "mediastream-bits-extractor",
-  "version": "1.0.0",
+  "name": "media-bits-extractor",
+  "version": "0.1.0",
   "description": "[![Build Status](https://travis-ci.org/ycmjason/mediastream-bits-extractor.svg?branch=master)](https://travis-ci.org/ycmjason/mediastream-bits-extractor) A repository to extract bits from MediaStream.",
   "main": "lib/index.js",
   "scripts": {
@@ -25,8 +25,6 @@
   "devDependencies": {
     "browserify": "^14.3.0",
     "http-server": "^0.10.0",
-    "mocha": "^3.4.1",
-    "webpack": "^2.5.1",
-    "webrtc-adapter": "^3.4.3"
+    "mocha": "^3.4.1"
   }
 }
