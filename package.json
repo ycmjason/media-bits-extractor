@@ -1,7 +1,7 @@
 {
   "name": "media-bits-extractor",
   "version": "0.1.0",
-  "description": "[![Build Status](https://travis-ci.org/ycmjason/mediastream-bits-extractor.svg?branch=master)](https://travis-ci.org/ycmjason/mediastream-bits-extractor) A repository to extract bits from MediaStream.",
+  "description": "This package is to extract bits from the video/audio device on the client side.",
   "main": "lib/index.js",
   "scripts": {
     "start": "http-server -p $PORT ./example",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ycmjason/mediastream-bits-extractor.git"
+    "url": "git+https://github.com/ycmjason/media-bits-extractor.git"
   },
   "author": "Jason Yu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ycmjason/mediastream-bits-extractor/issues"
+    "url": "https://github.com/ycmjason/media-bits-extractor/issues"
   },
-  "homepage": "https://github.com/ycmjason/mediastream-bits-extractor#readme",
+  "homepage": "https://github.com/ycmjason/media-bits-extractor#readme",
   "dependencies": {
     "pad-left-simple": "^1.0.1"
   },
