@@ -1,23 +1,23 @@
 // var MediaBitsExtractor = require('../lib/index.js');
 
-var extractor = new MediaBitsExtractor({video: true, audio: true}, 500);
+var recorder = new MediaBitsExtractor({video: true, audio: true}, 500);
 var recording = false;
 
 window.record = function(){
   if(recording){
-    extractor.stop();
+    recorder.stop();
     recording = false;
     return;
   }
 
-  extractor.start();
+  recorder.start();
   recording = true;
 }
 
-extractor.on('video', function(bits){
+recorder.on('video', function(bits){
   console.log('video', typeof bits, bits.length);
 });
 
-extractor.on('audio', function(bits){
+recorder.on('audio', function(bits){
   console.log('audio', typeof bits, bits.length);
 });

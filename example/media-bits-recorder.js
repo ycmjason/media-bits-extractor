@@ -45,10 +45,9 @@ function blobToDataURL(blob, callback) {
     a.readAsDataURL(blob);
 }
 
-function MediaBitsExtractor(config, interval){
+function MediaBitsRecorder(config){
   config.video = config.video || false;
   config.audio = config.audio || false;
-  this.interval = interval || 1000;
   this.config = config;
 
   this.recorders = {
@@ -59,15 +58,15 @@ function MediaBitsExtractor(config, interval){
   this.eventEmitter = new EventEmitter();
 }
 
-MediaBitsExtractor.prototype.on = function(type, handler){
+MediaBitsRecorder.prototype.on = function(type, handler){
   return this.eventEmitter.on(type, handler);
 };
 
-MediaBitsExtractor.prototype.start = function(){
+MediaBitsRecorder.prototype.start = function(interval){
+  interval = interval || Infinity;
   var eventEmitter = this.eventEmitter;
   var config = this.config;
   var recorders = this.recorders;
-  var interval = this.interval;
   navigator.getUserMedia({ video: config.video, audio: config.audio }, function (s) {
     ['video', 'audio'].forEach(function(type){
       if(!config[type]) return;
@@ -94,28 +93,32 @@ MediaBitsExtractor.prototype.start = function(){
         });
       };
 
-      var i = setInterval(function(){
-        if(mediaRecorder.state === "inactive") return clearInterval(i);
-        mediaRecorder.requestData();
-      }, interval);
+      if(interval < Infinity){
+        var i = setInterval(function(){
+          if(mediaRecorder.state === "inactive") return clearInterval(i);
+          mediaRecorder.requestData();
+        }, interval);
+      }
     });
   });
 };
 
-MediaBitsExtractor.prototype.stop = function(){
+MediaBitsRecorder.prototype.stop = function(){
   var self = this;
+  var recorder = this.recorder;
   ['video', 'audio'].forEach(function(type){
-    if(self.recorders[type]){
-      self.recorders[type].stop();
-      self.recorders[type].stream.getTracks().forEach(function(t){ t.stop();});
+    if(recorders[type]){
+      recorders[type].requestData();
+      recorders[type].stop();
+      recorders[type].stream.getTracks().forEach(function(t){ t.stop();});
     }
-    self.recorders[type] = null;
+    recorders[type] = null;
   });
   return;
 };
 
-if(module && module.exports) module.exports = MediaBitsExtractor;
-if(window) window.MediaBitsExtractor = MediaBitsExtractor;
+if(module && module.exports) module.exports = MediaBitsRecorder;
+if(window) window.MediaBitsRecorder = MediaBitsRecorder;
 
 },{"./EventEmitter":1,"./getBitsInDataUrl":2}],4:[function(require,module,exports){
 module.exports = function leftPad(s, size, ch){

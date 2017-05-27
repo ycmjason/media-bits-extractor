@@ -6,19 +6,19 @@
   "scripts": {
     "start": "http-server -p $PORT ./example",
     "test": "mocha",
-    "build:example": "npm run build && cp ./dist/out.js ./example/media-bits-extractor.js",
+    "build:example": "npm run build && cp ./dist/out.js ./example/media-bits-recorder.js",
     "build": "browserify ./lib/index.js > ./dist/out.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ycmjason/media-bits-extractor.git"
+    "url": "git+https://github.com/ycmjason/media-bits-recorder.git"
   },
   "author": "Jason Yu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ycmjason/media-bits-extractor/issues"
+    "url": "https://github.com/ycmjason/media-bits-recorder/issues"
   },
-  "homepage": "https://github.com/ycmjason/media-bits-extractor#readme",
+  "homepage": "https://github.com/ycmjason/media-bits-recorder#readme",
   "dependencies": {
     "pad-left-simple": "^1.0.1"
   },
