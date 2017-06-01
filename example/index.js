@@ -1,7 +1,10 @@
-// var MediaBitsExtractor = require('../lib/index.js');
+// var MediaBitsRecorder = require('../lib/index.js');
 
-var recorder = new MediaBitsExtractor({video: true, audio: true}, 500);
+var recorder = new MediaBitsRecorder({video: true, audio: true});
 var recording = false;
+
+var result = document.getElementById('bits');
+result.innerHTML = '';
 
 window.record = function(){
   if(recording){
@@ -10,14 +13,14 @@ window.record = function(){
     return;
   }
 
-  recorder.start();
+  recorder.start(1000);
   recording = true;
 }
 
 recorder.on('video', function(bits){
-  console.log('video', typeof bits, bits.length);
+  result.innerHTML += 'video: ' + bits.substring(100, 200) + '(' + bits.length + ')<br>';
 });
 
 recorder.on('audio', function(bits){
-  console.log('audio', typeof bits, bits.length);
+  result.innerHTML += 'audio: ' + bits.substring(100, 200) + '(' + bits.length + ')<br><br>';
 });
