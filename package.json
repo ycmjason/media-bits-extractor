@@ -29,6 +29,7 @@
     "browserify": "^14.3.0",
     "http-server": "^0.10.0",
     "lodash.chunk": "^4.2.0",
-    "mochify": "^3.2.1"
+    "mochify": "^3.2.1",
+    "phantomjs": "^2.1.7"
   }
 }
