@@ -3,4 +3,5 @@ node_js:
   - "node"
   - "7"
 before_script:
+  - phantomjs -v
   - npm run build
