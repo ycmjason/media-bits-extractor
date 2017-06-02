@@ -3,4 +3,4 @@ node_js:
   - "node"
   - "7"
 before_script:
-  - npm run build:example
+  - npm run build
