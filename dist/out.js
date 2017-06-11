@@ -64,7 +64,6 @@ MediaBitsRecorder.prototype.on = function (type, handler) {
 };
 
 MediaBitsRecorder.prototype.start = function (interval) {
-  interval = interval || Infinity;
   var eventEmitter = this.eventEmitter;
   var config = this.config;
   var recorders = this.recorders;
@@ -85,21 +84,16 @@ MediaBitsRecorder.prototype.start = function (interval) {
     ['video', 'audio'].forEach(function (type) {
       if (!recorders[type]) return;
       var mediaRecorder = recorders[type];
-      mediaRecorder.start();
-
       mediaRecorder.ondataavailable = function (e) {
         var blob = e.data;
         getBitsFromBlob(blob, function (bits) {
           eventEmitter.emit(type, bits);
         });
       };
+    });
 
-      if (interval < Infinity) {
-        var i = setInterval(function () {
-          if (mediaRecorder.state === "inactive") return clearInterval(i);
-          mediaRecorder.requestData();
-        }, interval);
-      }
+    recorders.forEach(function (recorder) {
+      return recorder.start(interval);
     });
   });
 };
