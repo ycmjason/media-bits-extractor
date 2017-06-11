@@ -1,6 +1,6 @@
 {
   "name": "media-bits-recorder",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "This package is to extract bits from the video/audio device on the client side.",
   "main": "lib/index.js",
   "scripts": {
