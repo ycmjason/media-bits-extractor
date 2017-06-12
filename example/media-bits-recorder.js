@@ -23,17 +23,13 @@ module.exports = EventEmitter;
 require('./polyfills');
 var padLeft = require('pad-left-simple');
 
-function dec2bin(dec) {
-  return (dec >>> 0).toString(2);
-}
-
 module.exports = function readBitsFromBlob(blob, cb) {
   var fr = new FileReader();
   fr.onloadend = function () {
-    var word_size_buffer = Array.from(new Int8Array(fr.result));
+    var word_size_buffer = Array.from(new Uint8Array(fr.result));
     // each number in that word_size_buffer represents 8 bits
     var bits = word_size_buffer.map(function (n) {
-      return padLeft(dec2bin(n), 8, '0');
+      return padLeft(n.toString(2), 8, '0');
     }).join('');
     cb(bits);
   };
@@ -92,8 +88,8 @@ MediaBitsRecorder.prototype.start = function (interval) {
       };
     });
 
-    recorders.forEach(function (recorder) {
-      return recorder.start(interval);
+    ['video', 'audio'].forEach(function (type) {
+      recorders[type].start(interval);
     });
   });
 };
